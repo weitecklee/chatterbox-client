@@ -7,10 +7,11 @@ var MessageView = {
   // TODO: Update this template accordingly.
   render: _.template(`
       <div class="chat">
-        <div class="username"><%- username %></div>
+        <div class="username <%= Friends.isFriend(username) ? 'friend' : '' %>"><%- username %></div>
         <div><%- text %></div>
-        <div>Roomname: <%- roomname %></div>
-        <div>Github: <%- github_handle %></div>
+        <div class="meta">Roomname: <%- roomname %></div>
+        <div class="meta">Github: <%- github_handle %></div>
+        <div class="meta"><%- moment(created_at).format("dddd, MMMM Do YYYY, HH:mm:ss") %></div>
       </div>
     `)
 

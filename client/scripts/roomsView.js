@@ -10,10 +10,17 @@ var RoomsView = {
     // TODO: Perform any work which needs to be done
     // when this view loads.
     RoomsView.$button.on('click', RoomsView.handleClick);
+    RoomsView.$select.on('change', RoomsView.handleChange);
   },
 
   render: function() {
     // TODO: Render out the list of rooms.
+    for (let i = 0; i < Messages._data.length; i++) {
+      if (Messages._data[i].roomname && Messages._data[i].roomname.length) {
+        Rooms.add(Messages._data[i].roomname);
+      }
+    }
+    Rooms._data.forEach(RoomsView.renderRoom);
   },
 
   renderRoom: function(roomname) {
@@ -23,6 +30,8 @@ var RoomsView = {
 
   handleChange: function(event) {
     // TODO: Handle a user selecting a different room.
+    Rooms.selected = event.target.value;
+    MessagesView.render();
   },
 
   handleClick: function(event) {
